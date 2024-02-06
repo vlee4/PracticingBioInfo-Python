@@ -19,12 +19,13 @@ file = open('test.txt', 'r')
 newFile = open('output.txt', 'w')
 # print(file.read())
 
-print(file.readlines()[1:2])
-# counter = 0
-# for line in file:
-#   if counter % 2 == 1:
-#     print(line)
-#     newFile.write(line)
-#   counter += 1
+# print(file.readlines()[1:2])
+counter = 0
+for line in file:
+  if counter % 2 == 1:
+    print(line)
+    newFile.write(line)
+  counter += 1
 
-# newFile.close()
+# print("Counter:", counter)
+newFile.close()

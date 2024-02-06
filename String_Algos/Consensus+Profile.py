@@ -9,6 +9,7 @@ fasta_strings = fasta_strs.read()
 fasta_strs.close()
 
 
+# Parse and clean given FASTA strings so we can have an iterable list
 def parse_fasta(str):
   delim = ">Rosalind_\d+"
   s = str.splitlines()
@@ -17,6 +18,7 @@ def parse_fasta(str):
   return (list(split_list))
 
 
+# Create dictionary of strings representing the occurance of each nt at i position in the given dna strings
 def create_profile(dna_strs):
   profile = {
     'A': [0 for x in range(len(dna_strs[0]))],
@@ -33,6 +35,7 @@ def create_profile(dna_strs):
   return profile
 
 
+# From the profiled dna strings, create a consenus string that reports the most frequent nt at each position
 def reach_consensus(profile):
   # print("prof", profile)
   consensus = []
@@ -48,6 +51,7 @@ def reach_consensus(profile):
   return consensus
 
 
+# Display profile matrix by letter with space-separated occurances
 def format_profile(profile):
   for key, value in profile.items():
     joined_val = " ".join(str(n) for n in value)
@@ -55,7 +59,7 @@ def format_profile(profile):
 
 
 parsed = parse_fasta(fasta_strings)
-# print(parsed)
+# print("PARSED", parsed)
 prof = create_profile(parsed)
 print("consensus", reach_consensus(prof))
 print(format_profile(prof))
