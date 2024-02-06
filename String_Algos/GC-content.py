@@ -10,7 +10,7 @@ highest_GC = {
 }
 
 
-# Function to find string
+# Removes string new lines, whitespaces & prefixing '>' and returns a list of DNA strings
 def formatStr(gc_strings):
   # remove new lines
   gc_str = gc_strings.splitlines()
@@ -41,7 +41,7 @@ def calculate_GC(str_arr):
       highest_GC['str_name'] = fasta[:13]
 
 
-# Print highest value
+# Print DNA string with highest 'GC' values
 def getHighestGC():
   print(highest_GC['str_name'])
   print(highest_GC['GC_content'])
