@@ -11,6 +11,7 @@ def findMotif(s, t):
   while i + t_length <= len(s):
 
     if s[i:i + t_length] == t:
+      # This may seem like a strange way to return the occurances but the problem asks for a string of space separated indices
       occurances = occurances + f' {str(i + 1)}'
     i += 1
 
