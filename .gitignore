@@ -1,2 +1,7 @@
 Rosalind_*
-Rosalind_0015
+venv/
+.config/
+*.pyc
+__pycache__/
+test.txt
+output.txt
