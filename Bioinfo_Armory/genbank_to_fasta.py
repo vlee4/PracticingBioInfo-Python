@@ -6,6 +6,8 @@
 
 from Bio import Entrez
 from Bio import SeqIO
+# TODO: Resolve this relative import. It can't seem to find the "parent package"
+from ...utils.str_to_list import space_sep_to_list
 
 # Finds the fasta shortest sequence given a list of Genbank access IDs
 def find_shortest_fasta(db="nucleotide", id=[], rettype="fasta", showSeq=False):
@@ -39,8 +41,8 @@ def find_shortest_fasta(db="nucleotide", id=[], rettype="fasta", showSeq=False):
   print("Shortest sequence", shortest)
   print("Shortest fasta", f">{shortest_record.description} {shortest}")
 
-find_shortest_fasta(id=["JX317624", "NM_001265803", "JX398977", "JX317645", "JF927157", "FJ817486", "JX308817", "JX469991"
-], showSeq=False)
+input_list = space_sep_to_list("JX069768 JX469983 JX469984")
+find_shortest_fasta(id=input_list, showSeq=False)
 
 #TODO: Even though this function produces the correct value, the Rosalind site seems to want it in a more specific format
 
