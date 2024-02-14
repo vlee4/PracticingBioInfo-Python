@@ -6,8 +6,7 @@
 
 from Bio import Entrez
 from Bio import SeqIO
-# TODO: Resolve this relative import. It can't seem to find the "parent package"
-from ...utils.str_to_list import space_sep_to_list
+from utils.str_to_list import space_sep_to_list
 
 # Finds the fasta shortest sequence given a list of Genbank access IDs
 def find_shortest_fasta(db="nucleotide", id=[], rettype="fasta", showSeq=False):
