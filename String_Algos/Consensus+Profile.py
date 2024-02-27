@@ -1,22 +1,13 @@
 # Given 10 DNA strings of equal length, <=10kbp in FASTA format
 # Return a consensus string and profile matrix for the collection. (If there's several possible consensus strings possible, than return any of them)
 import re
+from utils.parse_fasta import fasta_to_list
 
 # Read & parse FASTA strings
 
 fasta_strs = open('./String_Algos/consensus_fasta.txt', 'r')
 fasta_strings = fasta_strs.read()
 fasta_strs.close()
-
-
-# Parse and clean given FASTA strings so we can have an iterable list
-def parse_fasta(str):
-  delim = ">Rosalind_\d+"
-  s = str.splitlines()
-  joined = "".join(s)
-  split_list = filter(None, re.split(delim, joined))
-  return (list(split_list))
-
 
 # Create dictionary of strings representing the occurance of each nt at i position in the given dna strings
 def create_profile(dna_strs):
@@ -58,8 +49,9 @@ def format_profile(profile):
     print(f'{key}: {joined_val}')
 
 
-parsed = parse_fasta(fasta_strings)
-# print("PARSED", parsed)
+# Parse and clean given FASTA strings so we can have an iterable list
+parsed = fasta_to_list(fasta_strings)
+
 prof = create_profile(parsed)
 print("consensus", reach_consensus(prof))
 print(format_profile(prof))
