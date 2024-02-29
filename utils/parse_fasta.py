@@ -1,16 +1,33 @@
-__all__ = ['fasta_to_list']
-
+__all__ = ['fasta_to_list', 'fasta_to_dict']
 '''
-This script takes in a string containing fasta strings and returns a list of the fasta strings with the pre-fixing ">Rosalind_XXXX" label removed.
+These util functions are used to convert a string of combined fasta strings into another structure of fasta strings.
 '''
 import re
 
-def fasta_to_list(str):
-  delim = ">Rosalind_\d+"
+
+def parse_fasta_str(str, delim=">Rosalind_\d+"):
   s = str.splitlines()
   joined = "".join(s)
   split_list = filter(None, re.split(delim, joined))
-  return (list(split_list))
+  return split_list
+
+
+def fasta_to_list(str, delim=">Rosalind_\d+"):
+  parsed = parse_fasta_str(str, delim)
+  return (list(parsed))
+
+
+def fasta_to_dict(str, delim=">Rosalind_\d+"):
+  fasta_dict = {}
+  parsed = parse_fasta_str(str, delim)
+
+  for dna in parsed:
+    key = dna[0:13]
+    val = dna[13::]
+    fasta_dict[key] = val
+
+  return fasta_dict
+
 
 #### Testing
 

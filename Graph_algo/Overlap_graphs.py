@@ -8,26 +8,11 @@
 
 #Approach 2: Go thru all strings 1 time, making dictionaries of start seq and end seq, listing the FASTA id as values. Then, go thru all end strings, to see if there's matches with start seq. Pair those in an array. Transform the array and print. Time... a lot worse... O(n+n^3) not including parsing
 import re
+from utils.parse_fasta import fasta_to_dict
 
 fasta = open('./Graph_algo/graph_fasta.txt', 'r')
 fasta_strs = fasta.read()
 fasta.close()
-
-fasta_dict = {}
-
-
-def parse_fasta(strs):
-  s = strs.splitlines()
-  joined = "".join(s)
-  split_list = filter(None, re.split(">", joined))
-
-  for dna in split_list:
-    key = dna[0:13]
-    val = dna[13::]
-    fasta_dict[key] = val
-
-  # print("fasta dict", fasta_dict)
-
 
 def compare_strings(fasta_dictionary):
   overlaps = ""
@@ -75,7 +60,7 @@ def compare_strings(fasta_dictionary):
 #   return overlaps
 
 ## Consider restructuring start_seqs and end_seqs for easier access
-parse_fasta(fasta_strs)
+fasta_dict = fasta_to_dict(fasta_strs, delim=">")
 compare_strings(fasta_dict)
 # print(create_str_dicts(fasta_dict))
 # print(create_pairs(start_seqs, end_seqs))
